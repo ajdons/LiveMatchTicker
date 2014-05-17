@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity
     public static final String MY_KEY = "28594305340A0FD9BD498BF4663E69BC";
     public static final String GET_LIVE_LEAGUE_GAMES = "http://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v1/?key=" + MY_KEY + "&format=xml";
     private XStream xstream;
-
+    //Test comment to see if i can commit and push...
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
