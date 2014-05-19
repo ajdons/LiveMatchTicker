@@ -18,7 +18,6 @@ public class Game {
     private int tower_state;
     private String league_id;
     private int stream_delay_s;
-    @XStreamOmitField
     private Scoreboard scoreboard;
 
     public Game() {
