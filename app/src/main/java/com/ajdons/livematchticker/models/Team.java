@@ -14,6 +14,22 @@ public class Team {
     private String team_logo;
     private boolean complete;
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
     //more specific team
     private int score;
     private List<Player> players;

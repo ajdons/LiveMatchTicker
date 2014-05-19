@@ -18,15 +18,20 @@ package com.ajdons.livematchticker.app;
         import android.support.v4.widget.DrawerLayout;
         import android.widget.ArrayAdapter;
         import android.widget.Button;
+        import android.widget.ImageView;
         import android.widget.TextView;
         import com.ajdons.livematchticker.models.*;
         import com.thoughtworks.xstream.XStream;
 
+        import org.apache.commons.io.IOUtils;
+
         import java.io.BufferedReader;
         import java.io.IOException;
+        import java.io.InputStream;
         import java.io.InputStreamReader;
         import java.net.URL;
         import java.net.URLConnection;
+        import java.util.Scanner;
 
 
 public class MainActivity extends ActionBarActivity
@@ -43,6 +48,7 @@ public class MainActivity extends ActionBarActivity
     private CharSequence mTitle;
     private Button goButton;
     private TextView textView;
+    private ImageView iview;
     private String resultAsXML = "";
     public static final String MY_KEY = "28594305340A0FD9BD498BF4663E69BC";
 
@@ -99,6 +105,7 @@ public class MainActivity extends ActionBarActivity
 
         goButton = (Button) findViewById(R.id.button1);
         textView = (TextView) findViewById(R.id.textView1);
+        iview = (ImageView) findViewById(R.id.imageView3);
         textView.setMovementMethod(new ScrollingMovementMethod());
         goButton.setText("GO");
         goButton.setOnClickListener(new View.OnClickListener() {
@@ -127,32 +134,19 @@ public class MainActivity extends ActionBarActivity
     public void makeAPICall() {
         System.out.println("Trying to make api call.....");
         try{
-            URL url = new URL(GET_LIVE_LEAGUE_GAMES);
 
-            // read text returned by server
-            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            String line;
-            //discard first 2 lines
-            in.readLine();
-            in.readLine();
-
-            while((line = in.readLine()) != null){
-//                if(line.equals("		</game>")){
-//                    resultAsXML = resultAsXML + line + "\n";
-//                    break;
-//                }
-//                else
-                    resultAsXML = resultAsXML + line + "\n";
-            }
-            in.close();
+            InputStream in = new URL(GET_LIVE_LEAGUE_GAMES).openStream();
+            resultAsXML = IOUtils.toString(in);
+            IOUtils.closeQuietly(in);
 
             Result test = new Result();
             test = (Result)xstream.fromXML(resultAsXML);
             System.out.println("There are currently "  + test.getGames().size() + " live games being played.");
-            for(Game g : test.getGames())
-                System.out.println(g.getRadiant_team().getTeam_name() + " v.s. " + g.getDire_team().getTeam_name());
+            for(Game g : test.getGames()) {
 
+                System.out.println(g.getRadiant_team().getTeam_name() + " v.s. " + g.getDire_team().getTeam_name());
+                System.out.println(g.getScoreboard().getRadiant().getScore() + "  -  " + g.getScoreboard().getDire().getScore());
+            }
             this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -162,8 +156,8 @@ public class MainActivity extends ActionBarActivity
 
         }
         catch (IOException e){
-            System.out.println("Problem encountered: " + e);
-            System.out.println("It is likely that there are currently no live games to display!  ");
+            System.out.println("Problem encountered: ");
+            System.out.println("There are currently no live games to display");
         }
 
     }

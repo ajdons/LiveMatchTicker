@@ -23,12 +23,18 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="426dp"
+            android:layout_height="185dp"
             android:text="New Text"
             android:id="@+id/textView1"
             android:maxLines="500"
             android:scrollbars="vertical"
             android:layout_gravity="center" />
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imageView3"
+            android:layout_gravity="center_horizontal|bottom" />
     </FrameLayout>
 
     <!-- android:layout_gravity="start" tells DrawerLayout to treat
