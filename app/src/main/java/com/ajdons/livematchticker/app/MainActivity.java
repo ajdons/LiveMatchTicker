@@ -19,6 +19,7 @@ package com.ajdons.livematchticker.app;
         import android.widget.ArrayAdapter;
         import android.widget.Button;
         import android.widget.ImageView;
+        import android.widget.ListView;
         import android.widget.TextView;
         import com.ajdons.livematchticker.models.*;
         import com.thoughtworks.xstream.XStream;
@@ -26,6 +27,8 @@ package com.ajdons.livematchticker.app;
         import org.apache.commons.io.IOUtils;
 
         import java.io.BufferedReader;
+        import java.io.File;
+        import java.io.FileInputStream;
         import java.io.IOException;
         import java.io.InputStream;
         import java.io.InputStreamReader;
@@ -47,8 +50,8 @@ public class MainActivity extends ActionBarActivity
      */
     private CharSequence mTitle;
     private Button goButton;
-    private TextView textView;
-    private ImageView iview;
+    private ListView listView;
+    private CustomAdapter adapter;
     private String resultAsXML = "";
     public static final String MY_KEY = "28594305340A0FD9BD498BF4663E69BC";
 
@@ -57,6 +60,8 @@ public class MainActivity extends ActionBarActivity
 
     public static final String GET_LIVE_LEAGUE_GAMES = "http://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v1/?key=" + MY_KEY + "&format=xml";
     //Array of Dota2 Heroes by order of their id #
+
+
     public static final String[] DOTA_HEROES = {"unknown", "antimage", "axe", "bane", "bloodseeker", "crystal_maiden", "drow_ranger",
                                                  "earthshaker", "juggernaut", "mirana", "nevermore", "morphling", "phantom_lancer",
                                                  "puck", "pudge", "razor", "sand_king", "storm_spirit", "sven", "tiny", "vengefulspirit",
@@ -104,9 +109,6 @@ public class MainActivity extends ActionBarActivity
         xstream.alias("result", Result.class);
 
         goButton = (Button) findViewById(R.id.button1);
-        textView = (TextView) findViewById(R.id.textView1);
-        iview = (ImageView) findViewById(R.id.imageView3);
-        textView.setMovementMethod(new ScrollingMovementMethod());
         goButton.setText("GO");
         goButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,6 +123,9 @@ public class MainActivity extends ActionBarActivity
             }
         });
 
+        listView = (ListView) findViewById(R.id.listView);
+
+
         mNavigationDrawerFragment = (NavigationDrawerFragment)
                 getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         mTitle = getTitle();
@@ -134,7 +139,8 @@ public class MainActivity extends ActionBarActivity
     public void makeAPICall() {
         System.out.println("Trying to make api call.....");
         try{
-
+            //File file = new File("C:/Users/adamdonegan/Desktop/testAPIResult.xml");
+            //InputStream in = new FileInputStream(file);
             InputStream in = new URL(GET_LIVE_LEAGUE_GAMES).openStream();
             resultAsXML = IOUtils.toString(in);
             IOUtils.closeQuietly(in);
@@ -142,15 +148,17 @@ public class MainActivity extends ActionBarActivity
             Result test = new Result();
             test = (Result)xstream.fromXML(resultAsXML);
             System.out.println("There are currently "  + test.getGames().size() + " live games being played.");
-            for(Game g : test.getGames()) {
-
-                System.out.println(g.getRadiant_team().getTeam_name() + " v.s. " + g.getDire_team().getTeam_name());
-                System.out.println(g.getScoreboard().getRadiant().getScore() + "  -  " + g.getScoreboard().getDire().getScore());
-            }
+            adapter = new CustomAdapter(this, test.getGames());
+            System.out.println(resultAsXML);
+//            for(Game g : test.getGames()) {
+//
+//                System.out.println(g.getRadiant_team().getTeam_name() + " v.s. " + g.getDire_team().getTeam_name());
+//                System.out.println(g.getScoreboard().getRadiant().getScore() + "  -  " + g.getScoreboard().getDire().getScore());
+//            }
             this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    textView.setText(resultAsXML);
+                    listView.setAdapter(adapter);
                 }
             });
 

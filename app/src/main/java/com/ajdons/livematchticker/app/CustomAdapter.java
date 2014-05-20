@@ -1,30 +1,69 @@
 package com.ajdons.livematchticker.app;
 
+import android.content.Context;
+import android.media.Image;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.ajdons.livematchticker.models.Game;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by adamdonegan on 18/05/2014.
  */
-public class CustomAdapter extends BaseAdapter{
-    @Override
-    public int getCount() {
-        return 0;
+public class CustomAdapter extends ArrayAdapter<Game> {
+    private final Context context;
+    private final List<Game> gamesArrayList;
+
+    public CustomAdapter(Context context, List<Game> gamesArrayList) {
+      super(context, R.layout.row, gamesArrayList);
+
+        this.context = context;
+        this.gamesArrayList = gamesArrayList;
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
-    }
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
+        // 1. Create inflater
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-    @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        return null;
+        // 2. Get rowView from inflater
+        View rowView = inflater.inflate(R.layout.row, parent, false);
+
+        // 3. Get initialize rowView elements
+        TextView team1Name = (TextView) rowView.findViewById(R.id.textView1);
+        TextView team2Name = (TextView) rowView.findViewById(R.id.textView2);
+
+        TextView team1Score = (TextView) rowView.findViewById(R.id.textView3);
+        TextView team2Score = (TextView) rowView.findViewById(R.id.textView4);
+
+        ImageView team1Logo = (ImageView) rowView.findViewById(R.id.imageView1);
+        ImageView team2Logo = (ImageView) rowView.findViewById(R.id.imageView2);
+
+        // 4. Set the text and images for elements
+        team1Name.setText(gamesArrayList.get(position).getRadiant_team().getTeam_name());
+        team2Name.setText(gamesArrayList.get(position).getDire_team().getTeam_name());
+
+        if(gamesArrayList.get(position).getScoreboard() == null) {
+            team1Score.setText(String.valueOf(0));
+            team2Score.setText(String.valueOf(0));
+        }
+        else {
+            team1Score.setText(String.valueOf(gamesArrayList.get(position).getScoreboard().getRadiant().getScore()));
+            team2Score.setText(String.valueOf(gamesArrayList.get(position).getScoreboard().getDire().getScore()));
+        }
+        // 5. return the rowView
+        return rowView;
     }
 }

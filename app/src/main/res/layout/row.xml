@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Alliance"
-        android:id="@+id/textView"
+        android:id="@+id/textView1"
         android:layout_alignTop="@+id/imageView1"
         android:layout_alignBottom="@+id/imageView1"
         android:layout_toRightOf="@+id/imageView1" />
@@ -48,11 +48,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="24"
         android:id="@+id/textView3"
-        android:layout_alignTop="@+id/textView"
-        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/textView1"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="47dp"
-        android:layout_alignBottom="@+id/textView" />
+        android:layout_marginRight="45dp"
+        android:layout_alignBottom="@+id/textView1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,8 +60,8 @@
         android:text="20"
         android:id="@+id/textView4"
         android:layout_alignTop="@+id/textView2"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:layout_alignBottom="@+id/textView2" />
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="45dp"/>
 
 </RelativeLayout>
