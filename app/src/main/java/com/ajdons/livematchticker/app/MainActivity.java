@@ -89,7 +89,7 @@ public class MainActivity extends ActionBarActivity
                                                "recipe_necronomicon_3", "necronomicon_2","necronomicon_3","recipe_diffusal_blade_2","diffusal_blade_2","recipe_dagon_2","recipe_dagon_3","recipe_dagon_4","recipe_dagon_5","dagon_2","dagon_3","dagon_4","dagon_5", "recipe_rod_of_atos",
                                                "rod_of_atos","recipe_abyssal_blade", "abyssal_blade", "recipe_heavens_halberd","heavens_halberd","recipe_ring_of_aquila","ring_of_aquila","recipe_tranquil_boots","tranquil_boots"};
     private XStream xstream;
-//will this work?
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
