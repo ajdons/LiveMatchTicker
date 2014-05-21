@@ -70,11 +70,14 @@ public class CustomAdapter extends ArrayAdapter<Game> {
         }
 
             try {
-                team1Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + fixString("Natus Vincere") + "_std", "drawable", context.getPackageName())));
-                team2Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + fixString("Alliance") + "_std", "drawable", context.getPackageName())));
+                int team1ID = context.getResources().getIdentifier("drawable/" + fixString(team1Name.getText().toString()) + "_std", "drawable", context.getPackageName());
+                team1Logo.setImageResource(team1ID);
+                int team2ID = context.getResources().getIdentifier("drawable/" + fixString(team2Name.getText().toString()) + "_std", "drawable", context.getPackageName());
+                team2Logo.setImageResource(team2ID);
             }
             catch (Resources.NotFoundException e){
-
+                team1Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + "ic_launcher", "drawable", context.getPackageName())));
+                team2Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + "ic_launcher", "drawable", context.getPackageName())));
             }
         // 5. return the rowView
         return rowView;
@@ -82,7 +85,7 @@ public class CustomAdapter extends ArrayAdapter<Game> {
 
     public String fixString(String s){
         String temp = s;
-        temp = temp.toLowerCase();
-        return temp.replaceAll("[-_!/., ?]", "");
+        return temp.toLowerCase().replaceAll("[-_!|/., ?]", "");
+
     }
 }

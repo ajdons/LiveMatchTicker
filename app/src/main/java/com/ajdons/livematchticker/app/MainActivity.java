@@ -35,6 +35,8 @@ package com.ajdons.livematchticker.app;
         import java.io.InputStreamReader;
         import java.net.URL;
         import java.net.URLConnection;
+        import java.util.ArrayList;
+        import java.util.List;
         import java.util.Scanner;
 
 
@@ -141,8 +143,15 @@ public class MainActivity extends ActionBarActivity
             Result test = new Result();
             test = (Result)xstream.fromXML(resultAsXML);
             System.out.println("There are currently "  + test.getGames().size() + " live games being played.");
-            adapter = new CustomAdapter(this, test.getGames());
-            System.out.println(resultAsXML);
+            List<Game> importantGames = new ArrayList<Game>();
+            for(Game g : test.getGames()){
+                if(g.getLeague_id().equals("600"))
+                    importantGames.add(g);
+
+            }
+
+            adapter = new CustomAdapter(this, importantGames  );
+            //System.out.println(resultAsXML);
 //            for(Game g : test.getGames()) {
 //
 //                System.out.println(g.getRadiant_team().getTeam_name() + " v.s. " + g.getDire_team().getTeam_name());
