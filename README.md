@@ -10,5 +10,3 @@ http://wiki.teamfortress.com/wiki/WebAPI#Dota_2
 http://dev.dota2.com/showthread.php?t=58317
 
 http://steamcommunity.com/dev/api
-
-![alt tag](http://imgur.com/EdrPEdC)
