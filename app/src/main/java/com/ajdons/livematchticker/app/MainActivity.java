@@ -1,6 +1,7 @@
 package com.ajdons.livematchticker.app;
 
         import android.app.Activity;
+        import android.content.res.AssetManager;
         import android.support.v7.app.ActionBarActivity;
         import android.support.v7.app.ActionBar;
         import android.support.v4.app.Fragment;
@@ -108,20 +109,13 @@ public class MainActivity extends ActionBarActivity
         xstream.alias("team", Team.class);
         xstream.alias("result", Result.class);
 
-        goButton = (Button) findViewById(R.id.button1);
-        goButton.setText("GO");
-        goButton.setOnClickListener(new View.OnClickListener() {
+        Thread thread = new Thread(new Runnable() {
             @Override
-            public void onClick(View view) {
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        makeAPICall();
-                    }
-                });
-                thread.start();
+            public void run() {
+                makeAPICall();
             }
         });
+        thread.start();
 
         listView = (ListView) findViewById(R.id.listView);
 
@@ -139,8 +133,7 @@ public class MainActivity extends ActionBarActivity
     public void makeAPICall() {
         System.out.println("Trying to make api call.....");
         try{
-            //File file = new File("C:/Users/adamdonegan/Desktop/testAPIResult.xml");
-            //InputStream in = new FileInputStream(file);
+
             InputStream in = new URL(GET_LIVE_LEAGUE_GAMES).openStream();
             resultAsXML = IOUtils.toString(in);
             IOUtils.closeQuietly(in);
@@ -159,6 +152,7 @@ public class MainActivity extends ActionBarActivity
                 @Override
                 public void run() {
                     listView.setAdapter(adapter);
+
                 }
             });
 

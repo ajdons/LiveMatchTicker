@@ -6,21 +6,20 @@
 
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/imageView1"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="23dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="0dp"/>
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/imageView2"
-        android:layout_alignParentLeft="true"
         android:layout_marginLeft="23dp"
         android:layout_marginTop="35dp"
-        android:baselineAlignBottom="false" />
+        android:baselineAlignBottom="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,8 +27,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Alliance"
         android:id="@+id/textView1"
-        android:layout_alignTop="@+id/imageView1"
-        android:layout_alignBottom="@+id/imageView1"
+        android:layout_marginTop="7.5dp"
         android:layout_toRightOf="@+id/imageView1" />
 
     <TextView
@@ -39,8 +37,7 @@
         android:text="Natus Vincere"
         android:id="@+id/textView2"
         android:layout_toRightOf="@+id/imageView1"
-        android:layout_alignTop="@+id/imageView2"
-        android:layout_alignBottom="@+id/imageView2" />
+        android:layout_marginTop="37.5dp" />
 
     <TextView
         android:layout_width="wrap_content"

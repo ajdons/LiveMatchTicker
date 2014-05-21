@@ -1,6 +1,9 @@
 package com.ajdons.livematchticker.app;
 
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.ajdons.livematchticker.app.MainActivity;
 
 import com.ajdons.livematchticker.models.Game;
 
 import org.w3c.dom.Text;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +29,6 @@ import java.util.List;
 public class CustomAdapter extends ArrayAdapter<Game> {
     private final Context context;
     private final List<Game> gamesArrayList;
-
     public CustomAdapter(Context context, List<Game> gamesArrayList) {
       super(context, R.layout.row, gamesArrayList);
 
@@ -63,7 +68,21 @@ public class CustomAdapter extends ArrayAdapter<Game> {
             team1Score.setText(String.valueOf(gamesArrayList.get(position).getScoreboard().getRadiant().getScore()));
             team2Score.setText(String.valueOf(gamesArrayList.get(position).getScoreboard().getDire().getScore()));
         }
+
+            try {
+                team1Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + fixString("Natus Vincere") + "_std", "drawable", context.getPackageName())));
+                team2Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + fixString("Alliance") + "_std", "drawable", context.getPackageName())));
+            }
+            catch (Resources.NotFoundException e){
+
+            }
         // 5. return the rowView
         return rowView;
+    }
+
+    public String fixString(String s){
+        String temp = s;
+        temp = temp.toLowerCase();
+        return temp.replaceAll("[-_!/., ?]", "");
     }
 }
