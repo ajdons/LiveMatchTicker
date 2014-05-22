@@ -5,6 +5,12 @@
     <item android:id="@+id/action_example"
         android:title="@string/action_example"
         app:showAsAction="withText|ifRoom" />
+    <item
+        android:id="@+id/action_refresh"
+        android:orderInCategory="100"
+        android:showAsAction="always"
+        android:icon="@drawable/ic_action_navigation_refresh"
+        android:title="Refresh"/>
     <item android:id="@+id/action_settings"
         android:title="@string/action_settings"
         android:orderInCategory="100"

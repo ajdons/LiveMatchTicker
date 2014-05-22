@@ -145,7 +145,7 @@ public class MainActivity extends ActionBarActivity
             System.out.println("There are currently "  + test.getGames().size() + " live games being played.");
             List<Game> importantGames = new ArrayList<Game>();
             for(Game g : test.getGames()){
-                if(g.getLeague_id().equals("600"))
+                //if(g.getLeague_id().equals("600"))
                     importantGames.add(g);
 
             }
