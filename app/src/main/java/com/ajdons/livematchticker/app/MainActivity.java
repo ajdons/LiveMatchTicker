@@ -22,6 +22,8 @@ package com.ajdons.livematchticker.app;
         import android.widget.ImageView;
         import android.widget.ListView;
         import android.widget.TextView;
+        import android.widget.Toast;
+
         import com.ajdons.livematchticker.models.*;
         import com.thoughtworks.xstream.XStream;
 
@@ -151,12 +153,7 @@ public class MainActivity extends ActionBarActivity
             }
 
             adapter = new CustomAdapter(this, importantGames  );
-            //System.out.println(resultAsXML);
-//            for(Game g : test.getGames()) {
-//
-//                System.out.println(g.getRadiant_team().getTeam_name() + " v.s. " + g.getDire_team().getTeam_name());
-//                System.out.println(g.getScoreboard().getRadiant().getScore() + "  -  " + g.getScoreboard().getDire().getScore());
-//            }
+
             this.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -225,6 +222,16 @@ public class MainActivity extends ActionBarActivity
         int id = item.getItemId();
         if (id == R.id.action_settings) {
             return true;
+        }
+        if(id == R.id.action_refresh){
+            Toast.makeText(this, "Refreshing list...", Toast.LENGTH_SHORT).show();
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    makeAPICall();
+                }
+            });
+            thread.start();
         }
         return super.onOptionsItemSelected(item);
     }

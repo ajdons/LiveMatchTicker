@@ -248,8 +248,8 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
+
         if (item.getItemId() == R.id.action_refresh) {
-            Toast.makeText(getActivity(), "Refreshing list...", Toast.LENGTH_SHORT).show();
 
             return true;
         }
