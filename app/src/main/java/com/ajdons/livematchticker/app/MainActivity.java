@@ -64,23 +64,24 @@ public class MainActivity extends ActionBarActivity
     public static final String GET_ITEM_IMAGE = "http://cdn.dota2.com/apps/dota2/images/items/"; //add <item_name>_lg.png to the end
 
     public static final String GET_LIVE_LEAGUE_GAMES = "http://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v1/?key=" + MY_KEY + "&format=xml";
+
+    public static final String[] PREMIERE_LEAGUES = {"600", "223", "1135", "1157", "1248", "1068", "1229", "1014", "1116"};
+
     //Array of Dota2 Heroes by order of their id #
-
-
     public static final String[] DOTA_HEROES = {"unknown", "antimage", "axe", "bane", "bloodseeker", "crystal_maiden", "drow_ranger",
-                                                 "earthshaker", "juggernaut", "mirana", "nevermore", "morphling", "phantom_lancer",
-                                                 "puck", "pudge", "razor", "sand_king", "storm_spirit", "sven", "tiny", "vengefulspirit",
-                                                 "windrunner", "zuus", "kunkka", "lina", "lich", "lion", "shadow_shaman", "slardar",
-                                                 "tidehunter", "witch_doctor", "riki", "enigma", "tinker", "sniper", "necrolyte",
-                                                 "warlock", "beastmaster", "queenofpain", "venomancer", "faceless_void", "skeleton_king", "death_prophet",
-                                                 "phantom_assassin", "pugna", "templar_assassin", "viper", "luna", "dragon_knight", "dazzle", "rattletrap",
-                                                 "leshrac", "furion", "life_stealer", "dark_seer", "clinkz", "omniknight", "enchantress", "huskar", "night_stalker",
-                                                 "broodmother", "bounty_hunter", "weaver", "jakiro", "batrider", "chen", "spectre", "doom_bringer", "ancient_apparition",
-                                                 "ursa", "spirit_breaker", "gyrocopter", "alchemist", "invoker", "silencer", "obsidian_destroyer", "lycan", "brewmaster",
-                                                 "shadow_demon", "lone_druid", "chaos_knight", "meepo", "treant", "ogre_magi", "undying", "rubick", "disruptor",
-                                                 "nyx_assassin", "naga_siren", "keeper_of_the_light", "wisp", "visage", "slark", "medusa", "troll_warlord", "centaur",
-                                                 "magnataur", "shredder", "bristleback", "tusk", "skywrath_mage", "abaddon", "elder_titan", "legion_commander",
-                                                 "ember_spirit", "earth_spirit", "terrorblade", "phoenix"};
+            "earthshaker", "juggernaut", "mirana", "nevermore", "morphling", "phantom_lancer",
+            "puck", "pudge", "razor", "sand_king", "storm_spirit", "sven", "tiny", "vengefulspirit",
+            "windrunner", "zuus", "kunkka", "lina", "lich", "lion", "shadow_shaman", "slardar",
+            "tidehunter", "witch_doctor", "riki", "enigma", "tinker", "sniper", "necrolyte",
+            "warlock", "beastmaster", "queenofpain", "venomancer", "faceless_void", "skeleton_king", "death_prophet",
+            "phantom_assassin", "pugna", "templar_assassin", "viper", "luna", "dragon_knight", "dazzle", "rattletrap",
+            "leshrac", "furion", "life_stealer", "dark_seer", "clinkz", "omniknight", "enchantress", "huskar", "night_stalker",
+            "broodmother", "bounty_hunter", "weaver", "jakiro", "batrider", "chen", "spectre", "doom_bringer", "ancient_apparition",
+            "ursa", "spirit_breaker", "gyrocopter", "alchemist", "invoker", "silencer", "obsidian_destroyer", "lycan", "brewmaster",
+            "shadow_demon", "lone_druid", "chaos_knight", "meepo", "treant", "ogre_magi", "undying", "rubick", "disruptor",
+            "nyx_assassin", "naga_siren", "keeper_of_the_light", "wisp", "visage", "slark", "medusa", "troll_warlord", "centaur",
+            "magnataur", "shredder", "bristleback", "tusk", "skywrath_mage", "abaddon", "elder_titan", "legion_commander",
+            "ember_spirit", "earth_spirit", "terrorblade", "phoenix"};
     //Array if Dota2 Items by order of their id #
     public static final String[] DOTA_ITEMS = {"emptyitembg","blink","blades_of_attack", "broadsword","chainmail","claymore","helm_of_iron_will","javelin","mithril_hammer","platemail","quarterstaff","quelling_blade","ring_of_protection","gauntlets",
                                                "slippers","mantle","branches","belt_of_strength","boots_of_elves","robe","circlet","ogre_axe","blade_of_alacrity","staff_of_wizardry","ultimate_orb","gloves","lifesteal","ring_of_regen","sobi_mask",
@@ -147,9 +148,12 @@ public class MainActivity extends ActionBarActivity
             System.out.println("There are currently "  + test.getGames().size() + " live games being played.");
             List<Game> importantGames = new ArrayList<Game>();
             for(Game g : test.getGames()){
-                //if(g.getLeague_id().equals("600"))
-                    importantGames.add(g);
-
+                for(int i=0; i<PREMIERE_LEAGUES.length; i++) {
+                    if (PREMIERE_LEAGUES[i].equals(g.getLeague_id())) {
+                        importantGames.add(g);
+                        break;
+                    }
+                }
             }
 
             adapter = new CustomAdapter(this, importantGames  );
@@ -174,9 +178,19 @@ public class MainActivity extends ActionBarActivity
     public void onNavigationDrawerItemSelected(int position) {
         // update the main content by replacing fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        switch(position + 1) {
+            case 1:
+
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                    .commit();
+                break;
+            case 2:
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, GameViewFragment.newInstance()).commit();
+                break;
+
+        }
     }
 
     public void onSectionAttached(int number) {

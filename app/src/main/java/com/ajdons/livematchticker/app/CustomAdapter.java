@@ -76,8 +76,8 @@ public class CustomAdapter extends ArrayAdapter<Game> {
                 team2Logo.setImageResource(team2ID);
             }
             catch (Resources.NotFoundException e){
-                team1Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + "ic_launcher", "drawable", context.getPackageName())));
-                team2Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + "ic_launcher", "drawable", context.getPackageName())));
+                team1Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + "default_std", "drawable", context.getPackageName())));
+                team2Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + "default_std", "drawable", context.getPackageName())));
             }
         // 5. return the rowView
         return rowView;
