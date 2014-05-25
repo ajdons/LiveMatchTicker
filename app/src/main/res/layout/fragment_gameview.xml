@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/abc_ab_bottom_solid_dark_holo">
 
-</LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="v.s."
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:textColor="#ffcfcfcf" />
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/team1image"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_toLeftOf="@+id/textView" />
+
+    <ImageView
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:id="@+id/team2image"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_toRightOf="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="50"
+        android:id="@+id/t1score"
+        android:layout_below="@+id/team1image"
+        android:layout_alignLeft="@+id/team1image"
+        android:layout_alignRight="@+id/team1image"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="#ffcfcfcf"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="50"
+        android:id="@+id/t2score"
+        android:layout_below="@+id/team2image"
+        android:layout_alignLeft="@+id/team2image"
+        android:layout_alignRight="@+id/team2image"
+        android:gravity="center"
+        android:textColor="#ffcfcfcf"/>
+</RelativeLayout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="70dp">
+    android:layout_height="70dp"
+    android:background="@drawable/my_drawable">
 
 
     <ImageView
@@ -28,7 +29,7 @@
         android:id="@+id/textView1"
         android:layout_marginTop="7.5dp"
         android:layout_toRightOf="@+id/imageView1"
-        android:textColor="@android:color/primary_text_light" />
+        android:textColor="#ffcbcbcb" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -38,7 +39,7 @@
         android:id="@+id/textView2"
         android:layout_toRightOf="@+id/imageView1"
         android:layout_marginTop="37.5dp"
-        android:textColor="@android:color/primary_text_light" />
+        android:textColor="#ffcbcbcb" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,7 +51,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginRight="45dp"
         android:layout_alignBottom="@+id/textView1"
-        android:textColor="@android:color/primary_text_light" />
+        android:textColor="#ffcbcbcb" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -62,6 +63,6 @@
         android:layout_alignBottom="@+id/textView2"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="45dp"
-        android:textColor="@android:color/primary_text_light" />
+        android:textColor="#ffcbcbcb" />
 
 </RelativeLayout>

@@ -5,12 +5,15 @@ import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.ajdons.livematchticker.app.MainActivity;
 
@@ -26,10 +29,16 @@ import java.util.List;
 /**
  * Created by adamdonegan on 18/05/2014.
  */
-public class CustomAdapter extends ArrayAdapter<Game> {
+public class ListGamesAdapter extends ArrayAdapter<Game> {
     private final Context context;
+
+    public List<Game> getGamesArrayList() {
+        return gamesArrayList;
+    }
+
     private final List<Game> gamesArrayList;
-    public CustomAdapter(Context context, List<Game> gamesArrayList) {
+
+    public ListGamesAdapter(Context context, List<Game> gamesArrayList) {
       super(context, R.layout.row, gamesArrayList);
 
         this.context = context;
@@ -69,16 +78,21 @@ public class CustomAdapter extends ArrayAdapter<Game> {
             team2Score.setText(String.valueOf(gamesArrayList.get(position).getScoreboard().getDire().getScore()));
         }
 
-            try {
-                int team1ID = context.getResources().getIdentifier("drawable/" + fixString(team1Name.getText().toString()) + "_std", "drawable", context.getPackageName());
-                team1Logo.setImageResource(team1ID);
-                int team2ID = context.getResources().getIdentifier("drawable/" + fixString(team2Name.getText().toString()) + "_std", "drawable", context.getPackageName());
-                team2Logo.setImageResource(team2ID);
-            }
-            catch (Resources.NotFoundException e){
-                team1Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + "default_std", "drawable", context.getPackageName())));
-                team2Logo.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier("drawable/" + "default_std", "drawable", context.getPackageName())));
-            }
+
+
+        int team1ID = context.getResources().getIdentifier("drawable/" + fixString(team1Name.getText().toString()) + "_std", "drawable", context.getPackageName());
+        int team2ID = context.getResources().getIdentifier("drawable/" + fixString(team2Name.getText().toString()) + "_std", "drawable", context.getPackageName());
+
+        if(team1ID != 0)
+            team1Logo.setImageResource(team1ID);
+        else
+            team1Logo.setImageResource(R.drawable.default_std);
+
+        if(team2ID != 0)
+            team2Logo.setImageResource(team2ID);
+        else
+            team2Logo.setImageResource(R.drawable.default_std);
+
         // 5. return the rowView
         return rowView;
     }
@@ -88,4 +102,5 @@ public class CustomAdapter extends ArrayAdapter<Game> {
         return temp.toLowerCase().replaceAll("[-_!|/., ?]", "");
 
     }
+
 }

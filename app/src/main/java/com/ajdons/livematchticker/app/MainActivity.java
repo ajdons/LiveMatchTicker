@@ -1,27 +1,14 @@
 package com.ajdons.livematchticker.app;
 
-        import android.app.Activity;
-        import android.content.res.AssetManager;
+        import android.support.v4.app.FragmentManager;
         import android.support.v7.app.ActionBarActivity;
         import android.support.v7.app.ActionBar;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentManager;
-        import android.content.Context;
-        import android.os.Build;
         import android.os.Bundle;
-        import android.text.method.ScrollingMovementMethod;
-        import android.view.Gravity;
-        import android.view.LayoutInflater;
         import android.view.Menu;
         import android.view.MenuItem;
-        import android.view.View;
-        import android.view.ViewGroup;
         import android.support.v4.widget.DrawerLayout;
-        import android.widget.ArrayAdapter;
         import android.widget.Button;
-        import android.widget.ImageView;
         import android.widget.ListView;
-        import android.widget.TextView;
         import android.widget.Toast;
 
         import com.ajdons.livematchticker.models.*;
@@ -29,17 +16,11 @@ package com.ajdons.livematchticker.app;
 
         import org.apache.commons.io.IOUtils;
 
-        import java.io.BufferedReader;
-        import java.io.File;
-        import java.io.FileInputStream;
         import java.io.IOException;
         import java.io.InputStream;
-        import java.io.InputStreamReader;
         import java.net.URL;
-        import java.net.URLConnection;
         import java.util.ArrayList;
         import java.util.List;
-        import java.util.Scanner;
 
 
 public class MainActivity extends ActionBarActivity
@@ -56,7 +37,7 @@ public class MainActivity extends ActionBarActivity
     private CharSequence mTitle;
     private Button goButton;
     private ListView listView;
-    private CustomAdapter adapter;
+    private ListGamesAdapter adapter;
     private String resultAsXML = "";
     public static final String MY_KEY = "28594305340A0FD9BD498BF4663E69BC";
 
@@ -65,7 +46,7 @@ public class MainActivity extends ActionBarActivity
 
     public static final String GET_LIVE_LEAGUE_GAMES = "http://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v1/?key=" + MY_KEY + "&format=xml";
 
-    public static final String[] PREMIERE_LEAGUES = {"600", "223", "1135", "1157", "1248", "1068", "1229", "1014", "1116"};
+    public static final String[] PREMIERE_LEAGUES = {"600", "223", "1135", "1157", "1248", "1068", "1229", "1014", "1116", "1418"};
 
     //Array of Dota2 Heroes by order of their id #
     public static final String[] DOTA_HEROES = {"unknown", "antimage", "axe", "bane", "bloodseeker", "crystal_maiden", "drow_ranger",
@@ -118,11 +99,18 @@ public class MainActivity extends ActionBarActivity
             @Override
             public void run() {
                 makeAPICall();
+
             }
         });
         thread.start();
-
-        listView = (ListView) findViewById(R.id.listView);
+        try {
+            thread.join();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, ListGamesFragment.newInstance( 1, adapter))
+                    .commit();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -133,6 +121,7 @@ public class MainActivity extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
     }
 
     public void makeAPICall() {
@@ -154,18 +143,9 @@ public class MainActivity extends ActionBarActivity
                         break;
                     }
                 }
+                importantGames.add(g);
             }
-
-            adapter = new CustomAdapter(this, importantGames  );
-
-            this.runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    listView.setAdapter(adapter);
-
-                }
-            });
-
+            adapter = new ListGamesAdapter(this, importantGames  );
         }
         catch (IOException e){
             System.out.println("Problem encountered: ");
@@ -180,14 +160,14 @@ public class MainActivity extends ActionBarActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
         switch(position + 1) {
             case 1:
-
             fragmentManager.beginTransaction()
-                    .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                    .replace(R.id.container, ListGamesFragment.newInstance(position + 1, adapter))
                     .commit();
                 break;
+
             case 2:
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, GameViewFragment.newInstance()).commit();
+                        .replace(R.id.container, PrizeTrackerFragment.newInstance(position + 1)).commit();
                 break;
 
         }
@@ -246,48 +226,16 @@ public class MainActivity extends ActionBarActivity
                 }
             });
             thread.start();
+            try {
+                thread.join();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container, ListGamesFragment.newInstance( 1, adapter))
+                        .commit();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-        /**
-         * The fragment argument representing the section number for this
-         * fragment.
-         */
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        /**
-         * Returns a new instance of this fragment for the given section
-         * number.
-         */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            return rootView;
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(
-                    getArguments().getInt(ARG_SECTION_NUMBER));
-        }
     }
 
 }
