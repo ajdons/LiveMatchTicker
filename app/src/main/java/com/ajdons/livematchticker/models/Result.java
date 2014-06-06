@@ -9,9 +9,11 @@ package com.ajdons.livematchticker.models;
 public class Result {
 
     private List<Game> games;
+    private int status;
 
     public Result() {
         games = new ArrayList<Game>();
+        status = 0;
     }
 
     public List<Game> getGames() {

@@ -18,6 +18,8 @@ public class Game {
     private int tower_state;
     private String league_id;
     private int stream_delay_s;
+
+    private int league_tier;
     private Scoreboard scoreboard;
 
     public Game() {
@@ -30,6 +32,7 @@ public class Game {
         this.league_id = "unknown";
         this.stream_delay_s = 0;
         this.scoreboard = new Scoreboard();
+        this.league_tier = 0;
     }
 
     public Game(List<Player> players, Team radiant_team, Team dire_team, String lobby_id, int spectators, int tower_state, String league_id, int stream_delay_s, Scoreboard scoreboard) {
@@ -116,5 +119,11 @@ public class Game {
         this.scoreboard = scoreboard;
     }
 
+    public int getLeague_tier() {
+        return league_tier;
+    }
 
+    public void setLeague_tier(int league_tier) {
+        this.league_tier = league_tier;
+    }
 }

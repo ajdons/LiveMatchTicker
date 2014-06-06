@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="v.s."
+        android:text="vs."
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -21,6 +26,7 @@
         android:layout_height="75dp"
         android:id="@+id/team1image"
         android:layout_alignParentTop="true"
+        android:layout_marginRight="20dp"
         android:gravity="center"
         android:layout_toLeftOf="@+id/textView" />
 
@@ -28,6 +34,7 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:id="@+id/team2image"
+        android:layout_marginLeft="20dp"
         android:layout_alignParentTop="true"
         android:gravity="center"
         android:layout_toRightOf="@+id/textView" />
@@ -37,23 +44,95 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="50"
-        android:id="@+id/t1score"
+        android:id="@+id/team1score"
         android:layout_below="@+id/team1image"
         android:layout_alignLeft="@+id/team1image"
         android:layout_alignRight="@+id/team1image"
         android:gravity="center"
-        android:textAlignment="center"
-        android:textColor="#ffcfcfcf"/>
+        android:textColor="#ffcfcfcf"
+        android:textSize="32dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="50"
-        android:id="@+id/t2score"
+        android:id="@+id/team2score"
         android:layout_below="@+id/team2image"
         android:layout_alignLeft="@+id/team2image"
         android:layout_alignRight="@+id/team2image"
         android:gravity="center"
-        android:textColor="#ffcfcfcf"/>
+        android:textColor="#ffcfcfcf"
+        android:textSize="32dp"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/team1logo"
+        android:layout_below="@+id/team1score"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/team1name"
+        android:layout_alignTop="@+id/team1logo"
+        android:layout_toRightOf="@+id/team1logo"
+        android:layout_alignBottom="@+id/team1logo"
+        android:textColor="#ffcdcdcd"
+        android:gravity="center"/>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:id="@+id/team1team"
+        android:layout_below="@+id/team1logo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:clickable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="20:00"
+        android:id="@+id/timeelapsed"
+        android:layout_above="@+id/team1name"
+        android:layout_centerHorizontal="true"
+        android:textColor="#ffcdcdcd" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/team2logo"
+        android:layout_below="@+id/team1team"
+        android:layout_marginTop="0dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/team2name"
+        android:layout_alignTop="@+id/team2logo"
+        android:layout_toRightOf="@+id/team2logo"
+        android:layout_alignBottom="@+id/team2logo"
+        android:gravity="center"
+        android:textColor="#ffcdcdcd" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:id="@+id/team2team"
+        android:layout_below="@+id/team2logo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
+
+    </ScrollView>

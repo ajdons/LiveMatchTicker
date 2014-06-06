@@ -2,6 +2,33 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/abc_ab_bottom_solid_dark_holo">
 
+    <ImageView
+        android:layout_width="match_parent"
+
+        android:layout_height="150dp"
+        android:id="@+id/ti4image"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Current Prize Pool"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ffcdcdcd" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textSize="70dp"
+        android:textColor="#ffcdcdcd"
+        android:text="Large Text"
+        android:id="@+id/prizepool"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

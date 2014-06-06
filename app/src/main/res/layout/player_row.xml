@@ -4,63 +4,75 @@
     android:layout_height="30dp">
 
     <ImageView
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/heroImage" />
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:id="@+id/heroImage"
+        android:layout_marginTop="2.5dp"
+        />
 
     <TextView
         android:layout_width="100dp"
         android:singleLine="true"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="EMPIRE.ALWAYSWANNAFLY"
         android:id="@+id/name"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="6.5dp"
         android:layout_toRightOf="@+id/heroImage"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit ="marquee_forever"
         android:focusable="true"
         android:focusableInTouchMode="true"
-        android:scrollHorizontally="true"/>
+        android:scrollHorizontally="true"
+        android:textColor="#ffcdcdcd" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="24"
         android:id="@+id/kills"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignTop="@+id/name"
+        android:layout_centerHorizontal="true"
+        android:gravity="left"
+        android:textColor="#ffcdcdcd" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="24"
         android:id="@+id/deaths"
-        android:layout_centerVertical="true"
+        android:layout_alignTop="@+id/name"
         android:layout_toRightOf="@+id/kills"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:gravity="left"
+        android:textColor="#ffcdcdcd" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="24"
         android:id="@+id/assists"
-        android:layout_centerVertical="true"
+        android:layout_alignTop="@+id/name"
         android:layout_toRightOf="@+id/deaths"
-        android:layout_marginLeft="5dp"/>
+        android:layout_marginLeft="5dp"
+        android:gravity="left"
+        android:textColor="#ffcdcdcd" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="128/14"
+        android:text="228/14"
         android:id="@+id/lasthitsdenies"
         android:layout_marginLeft="10dp"
         android:layout_alignBottom="@+id/assists"
-        android:layout_toRightOf="@+id/assists" />
+        android:layout_toRightOf="@+id/assists"
+        android:gravity="left"
+        android:textColor="#ffcdcdcd" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,8 +81,54 @@
         android:text="6000"
         android:id="@+id/gold"
         android:layout_marginLeft="10dp"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/lasthitsdenies" />
+        android:layout_alignTop="@+id/name"
+        android:layout_toRightOf="@+id/lasthitsdenies"
+        android:gravity="left"
+        android:textColor="#ffdab505" />
+<!--
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="20dp"
+        android:id="@+id/item1"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@+id/heroImage"
+        android:layout_alignLeft="@+id/name"
+        android:layout_alignStart="@+id/name" />
 
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="20dp"
+        android:id="@+id/item2"
+        android:layout_below="@+id/heroImage"
+        android:layout_toRightOf="@+id/item1" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="20dp"
+        android:id="@+id/item3"
+        android:layout_below="@+id/heroImage"
+        android:layout_toRightOf="@+id/item2" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="20dp"
+        android:id="@+id/item4"
+        android:layout_below="@+id/heroImage"
+        android:layout_toRightOf="@+id/item3" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="20dp"
+        android:id="@+id/item5"
+        android:layout_below="@+id/heroImage"
+        android:layout_toRightOf="@+id/item4" />
+
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="20dp"
+        android:id="@+id/item6"
+        android:layout_below="@+id/heroImage"
+        android:layout_toRightOf="@+id/item5" />
+-->
 
 </RelativeLayout>
