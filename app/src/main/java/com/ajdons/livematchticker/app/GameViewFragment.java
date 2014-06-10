@@ -10,8 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.ajdons.livematchticker.models.Game;
@@ -60,21 +62,47 @@ public class GameViewFragment extends Fragment {
         TextView team2Name = (TextView) rootView.findViewById(R.id.team2name);
         ImageView team1Logo = (ImageView) rootView.findViewById(R.id.team1logo);
         ImageView team2Logo = (ImageView) rootView.findViewById(R.id.team2logo);
-        ListView team1Team = (ListView) rootView.findViewById(R.id.team1team);
-        ListView team2Team = (ListView) rootView.findViewById(R.id.team2team);
+        final ListView team1Team = (ListView) rootView.findViewById(R.id.team1team);
+        final ListView team2Team = (ListView) rootView.findViewById(R.id.team2team);
+        Switch itemSwitch =  (Switch) rootView.findViewById(R.id.switch3);
+
+        itemSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (game.getScoreboard() != null) {
+                    if (b == false) {
+                        adapter1 = new GameViewAdapter(getActivity(), game.getScoreboard().getRadiant().getPlayers(), game, false);
+                        adapter2 = new GameViewAdapter(getActivity(), game.getScoreboard().getDire().getPlayers(), game, false);
+                        team1Team.setAdapter(adapter1);
+                        team2Team.setAdapter(adapter2);
+                        adapter1.notifyDataSetChanged();
+                        adapter2.notifyDataSetChanged();
+                    }
+                    else {
+                        adapter1 = new GameViewAdapter(getActivity(), game.getScoreboard().getRadiant().getPlayers(), game, true);
+                        adapter2 = new GameViewAdapter(getActivity(), game.getScoreboard().getDire().getPlayers(), game, true);
+                        team1Team.setAdapter(adapter1);
+                        team2Team.setAdapter(adapter2);
+                        adapter1.notifyDataSetChanged();
+                        adapter2.notifyDataSetChanged();
+                    }
+                }
+            }
+        });
 
         if(game.getScoreboard() == null) {
             team1Score.setText(String.valueOf(0));
             team2Score.setText(String.valueOf(0));
-            adapter1 = new GameViewAdapter(getActivity(), new ArrayList<Player>(), game);
-            adapter2 = new GameViewAdapter(getActivity(), new ArrayList<Player>(), game);
+            adapter1 = new GameViewAdapter(getActivity(), new ArrayList<Player>(), game, false);
+            adapter2 = new GameViewAdapter(getActivity(), new ArrayList<Player>(), game, false);
         }
         else {
             team1Score.setText(String.valueOf(game.getScoreboard().getRadiant().getScore()));
             team2Score.setText(String.valueOf(game.getScoreboard().getDire().getScore()));
             timeElapsed.setText(calculateTime(game.getScoreboard().getDuration()));
-            adapter1 = new GameViewAdapter(getActivity(), game.getScoreboard().getRadiant().getPlayers(), game);
-            adapter2 = new GameViewAdapter(getActivity(), game.getScoreboard().getDire().getPlayers(), game);
+            adapter1 = new GameViewAdapter(getActivity(), game.getScoreboard().getRadiant().getPlayers(), game, false);
+            adapter2 = new GameViewAdapter(getActivity(), game.getScoreboard().getDire().getPlayers(), game, false);
         }
 
         team1Name.setText(game.getRadiant_team().getTeam_name());
@@ -83,6 +111,8 @@ public class GameViewFragment extends Fragment {
 
         team1Team.setAdapter(adapter1);
         team2Team.setAdapter(adapter2);
+
+        team1Team.setAdapter(adapter2);
 
 
 

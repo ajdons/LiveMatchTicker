@@ -68,13 +68,15 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
 
     private final List<Player> playersArrayList;
     private final Game theGame;
+    private boolean showItems;
 
-    public GameViewAdapter(Context context, List<Player> playersList, Game theGame) {
+    public GameViewAdapter(Context context, List<Player> playersList, Game theGame, boolean showItems) {
         super(context, R.layout.player_row, playersList);
 
         this.context = context;
         this.playersArrayList = playersList;
         this.theGame = theGame;
+        this.showItems = showItems;
     }
 
     @Override
@@ -96,15 +98,15 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
         TextView playerAssists = (TextView) rowView.findViewById(R.id.assists);
         TextView playerLHD = (TextView) rowView.findViewById(R.id.lasthitsdenies);
         TextView playerGold = (TextView) rowView.findViewById(R.id.gold);
-//        ImageView item1Image = (ImageView) rowView.findViewById(R.id.item1);
-//        ImageView item2Image = (ImageView) rowView.findViewById(R.id.item2);
-//        ImageView item3Image = (ImageView) rowView.findViewById(R.id.item3);
-//        ImageView item4Image = (ImageView) rowView.findViewById(R.id.item4);
-//        ImageView item5Image = (ImageView) rowView.findViewById(R.id.item5);
-//        ImageView item6Image = (ImageView) rowView.findViewById(R.id.item6);
+        ImageView item1Image = (ImageView) rowView.findViewById(R.id.item1);
+        ImageView item2Image = (ImageView) rowView.findViewById(R.id.item2);
+        ImageView item3Image = (ImageView) rowView.findViewById(R.id.item3);
+        ImageView item4Image = (ImageView) rowView.findViewById(R.id.item4);
+        ImageView item5Image = (ImageView) rowView.findViewById(R.id.item5);
+        ImageView item6Image = (ImageView) rowView.findViewById(R.id.item6);
 
-        for(Player p : theGame.getPlayers()){
-            if(p.getAccount_id().equals(playersArrayList.get(position).getAccount_id()))
+        for (Player p : theGame.getPlayers()) {
+            if (p.getAccount_id().equals(playersArrayList.get(position).getAccount_id()))
                 playerName.setText(p.getName());
         }
         playerName.setSelected(true);
@@ -118,52 +120,65 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
         int heroID;
         try {
             heroID = context.getResources().getIdentifier("drawable/" + DOTA_HEROES[Integer.parseInt(playersArrayList.get(position).getHero_id())] + "_mini", "drawable", context.getPackageName());
-        }
-        catch(ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             heroID = 0;
         }
         heroImage.setImageResource(heroID);
 
+        int item1ID = 0;
+        int item2ID = 0;
+        int item3ID = 0;
+        int item4ID = 0;
+        int item5ID = 0;
+        int item6ID = 0;
         try {
-            int item1ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem0()] + "_lg", "drawable", context.getPackageName());
-            int item2ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem1()] + "_lg", "drawable", context.getPackageName());
-            int item3ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem2()] + "_lg", "drawable", context.getPackageName());
-            int item4ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem3()] + "_lg", "drawable", context.getPackageName());
-            int item5ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem4()] + "_lg", "drawable", context.getPackageName());
-            int item6ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem5()] + "_lg", "drawable", context.getPackageName());
-        }
-        catch(ArrayIndexOutOfBoundsException e){
+            item1ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem0()] + "_lg", "drawable", context.getPackageName());
+            item2ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem1()] + "_lg", "drawable", context.getPackageName());
+            item3ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem2()] + "_lg", "drawable", context.getPackageName());
+            item4ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem3()] + "_lg", "drawable", context.getPackageName());
+            item5ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem4()] + "_lg", "drawable", context.getPackageName());
+            item6ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem5()] + "_lg", "drawable", context.getPackageName());
+        } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
         }
-//        item1Image.setImageResource(item1ID);
-//        item2Image.setImageResource(item2ID);
-//        item3Image.setImageResource(item3ID);
-//        item4Image.setImageResource(item4ID);
-//        item5Image.setImageResource(item5ID);
-//        item6Image.setImageResource(item6ID);
-        // 5. return the rowView
+        item1Image.setImageResource(item1ID);
+        item2Image.setImageResource(item2ID);
+        item3Image.setImageResource(item3ID);
+        item4Image.setImageResource(item4ID);
+        item5Image.setImageResource(item5ID);
+        item6Image.setImageResource(item6ID);
+
+        if(showItems){
+            item1Image.setVisibility(View.VISIBLE);
+            item2Image.setVisibility(View.VISIBLE);
+            item3Image.setVisibility(View.VISIBLE);
+            item4Image.setVisibility(View.VISIBLE);
+            item5Image.setVisibility(View.VISIBLE);
+            item6Image.setVisibility(View.VISIBLE);
+
+            playerKills.setVisibility(View.INVISIBLE);
+            playerAssists.setVisibility(View.INVISIBLE);
+            playerDeaths.setVisibility(View.INVISIBLE);
+            playerLHD.setVisibility(View.INVISIBLE);
+            playerGold.setVisibility(View.INVISIBLE);
+        }
+
+        if(!showItems){
+            playerKills.setVisibility(View.VISIBLE);
+            playerAssists.setVisibility(View.VISIBLE);
+            playerDeaths.setVisibility(View.VISIBLE);
+            playerLHD.setVisibility(View.VISIBLE);
+            playerGold.setVisibility(View.VISIBLE);
+
+            item1Image.setVisibility(View.INVISIBLE);
+            item2Image.setVisibility(View.INVISIBLE);
+            item3Image.setVisibility(View.INVISIBLE);
+            item4Image.setVisibility(View.INVISIBLE);
+            item5Image.setVisibility(View.INVISIBLE);
+            item6Image.setVisibility(View.INVISIBLE);
+        }
+        //5. return the rowView
         return rowView;
     }
 
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
-
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String[] url) {
-            String urldisplay = url[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-    }
 }

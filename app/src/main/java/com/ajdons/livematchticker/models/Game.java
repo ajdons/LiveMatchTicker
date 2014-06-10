@@ -20,6 +20,12 @@ public class Game {
     private int stream_delay_s;
 
     private int league_tier;
+
+
+
+    private int series_type;
+    private int radiant_series_wins;
+    private int dire_series_wins;
     private Scoreboard scoreboard;
 
     public Game() {
@@ -45,6 +51,30 @@ public class Game {
         this.league_id = league_id;
         this.stream_delay_s = stream_delay_s;
         this.scoreboard = scoreboard;
+    }
+
+    public int getSeries_type() {
+        return series_type;
+    }
+
+    public void setSeries_type(int series_type) {
+        this.series_type = series_type;
+    }
+
+    public int getRadiant_series_wins() {
+        return radiant_series_wins;
+    }
+
+    public void setRadiant_series_wins(int radiant_series_wins) {
+        this.radiant_series_wins = radiant_series_wins;
+    }
+
+    public int getDire_series_wins() {
+        return dire_series_wins;
+    }
+
+    public void setDire_series_wins(int dire_series_wins) {
+        this.dire_series_wins = dire_series_wins;
     }
 
     public List<Player> getPlayers() {

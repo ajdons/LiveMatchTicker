@@ -11,7 +11,7 @@
         />
 
     <TextView
-        android:layout_width="100dp"
+        android:layout_width="115dp"
         android:singleLine="true"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -44,7 +44,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="24"
         android:id="@+id/deaths"
-        android:layout_alignTop="@+id/name"
+        android:layout_alignTop="@+id/kills"
         android:layout_toRightOf="@+id/kills"
         android:layout_marginLeft="5dp"
         android:gravity="left"
@@ -56,7 +56,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="24"
         android:id="@+id/assists"
-        android:layout_alignTop="@+id/name"
+        android:layout_alignTop="@+id/deaths"
         android:layout_toRightOf="@+id/deaths"
         android:layout_marginLeft="5dp"
         android:gravity="left"
@@ -81,54 +81,58 @@
         android:text="6000"
         android:id="@+id/gold"
         android:layout_marginLeft="10dp"
-        android:layout_alignTop="@+id/name"
+        android:layout_alignTop="@+id/lasthitsdenies"
         android:layout_toRightOf="@+id/lasthitsdenies"
         android:gravity="left"
         android:textColor="#ffdab505" />
-<!--
+
     <ImageView
-        android:layout_width="35dp"
+        android:layout_width="28dp"
         android:layout_height="20dp"
         android:id="@+id/item1"
-        android:layout_marginLeft="50dp"
-        android:layout_below="@+id/heroImage"
-        android:layout_alignLeft="@+id/name"
-        android:layout_alignStart="@+id/name" />
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@+id/name"
+        android:layout_centerVertical="true" />
 
     <ImageView
-        android:layout_width="35dp"
+        android:layout_width="28dp"
         android:layout_height="20dp"
         android:id="@+id/item2"
-        android:layout_below="@+id/heroImage"
-        android:layout_toRightOf="@+id/item1" />
+        android:layout_marginLeft="2dp"
+        android:layout_toRightOf="@+id/item1"
+        android:layout_centerVertical="true" />
 
     <ImageView
-        android:layout_width="35dp"
+        android:layout_width="28dp"
         android:layout_height="20dp"
+        android:layout_marginLeft="2dp"
         android:id="@+id/item3"
-        android:layout_below="@+id/heroImage"
-        android:layout_toRightOf="@+id/item2" />
+        android:layout_toRightOf="@+id/item2"
+        android:layout_centerVertical="true"/>
 
     <ImageView
-        android:layout_width="35dp"
+        android:layout_width="28dp"
         android:layout_height="20dp"
+        android:layout_marginLeft="2dp"
         android:id="@+id/item4"
-        android:layout_below="@+id/heroImage"
-        android:layout_toRightOf="@+id/item3" />
+        android:layout_toRightOf="@+id/item3"
+        android:layout_centerVertical="true" />
 
     <ImageView
-        android:layout_width="35dp"
+        android:layout_width="28dp"
         android:layout_height="20dp"
+        android:layout_marginLeft="2dp"
         android:id="@+id/item5"
-        android:layout_below="@+id/heroImage"
-        android:layout_toRightOf="@+id/item4" />
+        android:layout_toRightOf="@+id/item4"
+        android:layout_centerVertical="true"/>
 
     <ImageView
-        android:layout_width="35dp"
+        android:layout_width="28dp"
         android:layout_height="20dp"
+        android:layout_marginLeft="2dp"
         android:id="@+id/item6"
-        android:layout_below="@+id/heroImage"
-        android:layout_toRightOf="@+id/item5" />
--->
+        android:layout_toRightOf="@+id/item5"
+        android:layout_centerVertical="true"/>
+
 
 </RelativeLayout>
