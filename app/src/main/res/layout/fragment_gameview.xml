@@ -140,8 +140,11 @@
         android:text=""
         android:id="@+id/switch3"
         android:layout_alignTop="@+id/team1name"
+        android:layout_alignBottom="@+id/team1name"
         android:layout_alignLeft="@+id/team2score"
         android:layout_alignStart="@+id/team2score"
+        android:textOn="Items"
+        android:textOff="Items"
         android:thumb="@drawable/my_btn_toggle"
         android:track="@drawable/my_btn_toggle_bg"/>
 

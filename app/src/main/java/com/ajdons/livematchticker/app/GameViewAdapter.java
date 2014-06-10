@@ -68,6 +68,13 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
 
     private final List<Player> playersArrayList;
     private final Game theGame;
+
+
+
+    public void setShowItems(boolean showItems) {
+        this.showItems = showItems;
+    }
+
     private boolean showItems;
 
     public GameViewAdapter(Context context, List<Player> playersList, Game theGame, boolean showItems) {
@@ -105,6 +112,7 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
         ImageView item5Image = (ImageView) rowView.findViewById(R.id.item5);
         ImageView item6Image = (ImageView) rowView.findViewById(R.id.item6);
 
+        //Find player's screen name based on their Account ID
         for (Player p : theGame.getPlayers()) {
             if (p.getAccount_id().equals(playersArrayList.get(position).getAccount_id()))
                 playerName.setText(p.getName());
@@ -148,6 +156,28 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
         item5Image.setImageResource(item5ID);
         item6Image.setImageResource(item6ID);
 
+        //If the item is a recipe item, just show the default recipe image
+        //Ignore, StringIndexOutOfBounds, it just means the item name is shorter than "recipe"
+        try {
+            if (DOTA_ITEMS[playersArrayList.get(position).getItem0()].substring(0, 7).equals("recipe"))
+                item1Image.setImageResource(R.drawable.recipe_lg);
+            if (DOTA_ITEMS[playersArrayList.get(position).getItem1()].substring(0, 7).equals("recipe"))
+                item2Image.setImageResource(R.drawable.recipe_lg);
+            if (DOTA_ITEMS[playersArrayList.get(position).getItem2()].substring(0, 7).equals("recipe"))
+                item3Image.setImageResource(R.drawable.recipe_lg);
+            if (DOTA_ITEMS[playersArrayList.get(position).getItem3()].substring(0, 7).equals("recipe"))
+                item4Image.setImageResource(R.drawable.recipe_lg);
+            if (DOTA_ITEMS[playersArrayList.get(position).getItem4()].substring(0, 7).equals("recipe"))
+                item5Image.setImageResource(R.drawable.recipe_lg);
+            if (DOTA_ITEMS[playersArrayList.get(position).getItem5()].substring(0, 7).equals("recipe"))
+                item6Image.setImageResource(R.drawable.recipe_lg);
+        }
+        catch(StringIndexOutOfBoundsException e){
+            e.printStackTrace();
+        }
+        //Visibility Rules for toggle switch
+
+        //If show items is toggled on, show items, hide stats
         if(showItems){
             item1Image.setVisibility(View.VISIBLE);
             item2Image.setVisibility(View.VISIBLE);
@@ -163,6 +193,7 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
             playerGold.setVisibility(View.INVISIBLE);
         }
 
+        //If show items is toggled off, show stats, hide items
         if(!showItems){
             playerKills.setVisibility(View.VISIBLE);
             playerAssists.setVisibility(View.VISIBLE);

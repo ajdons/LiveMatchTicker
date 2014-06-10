@@ -72,18 +72,14 @@ public class GameViewFragment extends Fragment {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (game.getScoreboard() != null) {
                     if (b == false) {
-                        adapter1 = new GameViewAdapter(getActivity(), game.getScoreboard().getRadiant().getPlayers(), game, false);
-                        adapter2 = new GameViewAdapter(getActivity(), game.getScoreboard().getDire().getPlayers(), game, false);
-                        team1Team.setAdapter(adapter1);
-                        team2Team.setAdapter(adapter2);
+                        adapter1.setShowItems(false);
+                        adapter2.setShowItems(false);
                         adapter1.notifyDataSetChanged();
                         adapter2.notifyDataSetChanged();
                     }
                     else {
-                        adapter1 = new GameViewAdapter(getActivity(), game.getScoreboard().getRadiant().getPlayers(), game, true);
-                        adapter2 = new GameViewAdapter(getActivity(), game.getScoreboard().getDire().getPlayers(), game, true);
-                        team1Team.setAdapter(adapter1);
-                        team2Team.setAdapter(adapter2);
+                        adapter1.setShowItems(true);
+                        adapter2.setShowItems(true);
                         adapter1.notifyDataSetChanged();
                         adapter2.notifyDataSetChanged();
                     }
@@ -112,7 +108,6 @@ public class GameViewFragment extends Fragment {
         team1Team.setAdapter(adapter1);
         team2Team.setAdapter(adapter2);
 
-        team1Team.setAdapter(adapter2);
 
 
 
