@@ -51,7 +51,7 @@ public class MainActivity extends ActionBarActivity
 
     public static final String GET_LIVE_LEAGUE_GAMES = "http://api.steampowered.com/IDOTA2Match_570/GetLiveLeagueGames/v1/?key=" + MY_KEY + "&format=xml";
 
-    public static final String[] PREMIERE_LEAGUES = {"600", "223", "1135", "1157", "1248", "1068", "1229", "1014", "1116", "1418", "1175", "1100", "1284"};
+    public static final String[] PREMIERE_LEAGUES = {"600", "223", "1135", "1157", "1248", "1068", "1229", "1014", "1116", "1418", "1175", "1100", "1284", "1301"};
 
     //Array of Dota2 Heroes by order of their id #
     public static final String[] DOTA_HEROES = {"unknown", "antimage", "axe", "bane", "bloodseeker", "crystal_maiden", "drow_ranger",
@@ -126,13 +126,15 @@ public class MainActivity extends ActionBarActivity
             System.out.println("There are currently "  + test.getGames().size() + " live games being played.");
             importantGames = new ArrayList<Game>();
             for(Game g : test.getGames()){
-                importantGames.add(g);
-                for(int i=0; i<PREMIERE_LEAGUES.length; i++) {
-                    if (PREMIERE_LEAGUES[i].equals(g.getLeague_id())) {
+//                for(int i=0; i<PREMIERE_LEAGUES.length; i++) {
+//                    if (PREMIERE_LEAGUES[i].equals(g.getLeague_id())) {
+//                        importantGames.add(g);
+//                        break;
+//                    }
+//                    else
+                    if(g.getLeague_tier() == 3)
                         importantGames.add(g);
-                        break;
-                    }
-                }
+//                }
             }
 
             adapter = new ListGamesAdapter(getApplicationContext(), importantGames);

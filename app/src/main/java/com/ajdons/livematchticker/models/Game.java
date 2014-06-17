@@ -21,6 +21,16 @@ public class Game {
 
     private int league_tier;
 
+    public int getMatch_id() {
+        return match_id;
+    }
+
+    public void setMatch_id(int match_id) {
+        this.match_id = match_id;
+    }
+
+    private int match_id;
+
 
 
     private int series_type;

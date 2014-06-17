@@ -175,6 +175,20 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
         catch(StringIndexOutOfBoundsException e){
             e.printStackTrace();
         }
+        catch(ArrayIndexOutOfBoundsException e){
+            if(playersArrayList.get(position).getItem0() == 241)
+                item1Image.setImageResource(R.drawable.tango_shared_lg);
+            if(playersArrayList.get(position).getItem1() == 241)
+                item2Image.setImageResource(R.drawable.tango_shared_lg);
+            if(playersArrayList.get(position).getItem2() == 241)
+                item3Image.setImageResource(R.drawable.tango_shared_lg);
+            if(playersArrayList.get(position).getItem3() == 241)
+                item4Image.setImageResource(R.drawable.tango_shared_lg);
+            if(playersArrayList.get(position).getItem4() == 241)
+                item5Image.setImageResource(R.drawable.tango_shared_lg);
+            if(playersArrayList.get(position).getItem5() == 241)
+                item6Image.setImageResource(R.drawable.tango_shared_lg);
+        }
         //Visibility Rules for toggle switch
 
         //If show items is toggled on, show items, hide stats
