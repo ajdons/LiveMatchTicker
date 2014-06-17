@@ -31,6 +31,9 @@ public class GameViewFragment extends Fragment {
     private static Game game;
     private static  GameViewAdapter adapter1;
     private static GameViewAdapter adapter2;
+    public enum Building {
+        DIRE_ANCIENT_TOP, DIRE_ANCIENT_BOTTOM, DIRE_BOTTOM_TIER3, DIRE_BOTTOM_TIER2, DIRE_BOTTOM_TIER1, DIRE_MIDDLE_TIER3, DIRE_MIDDLE_TIER2, DIRE_MIDDLE_TIER1, DIRE_TOP_TIER3, DIRE_TOP_TIER2, DIRE_TOP_TIER1, RADIANT_ANCIENT_TOP,
+        RADIANT_ANCIENT_BOTTOM, RADIANT_BOTTOM_TIER3, RADIANT_BOTTOM_TIER2, RADIANT_BOTTOM_TIER1, RADIANT_MIDDLE_TIER3, RADIANT_MIDDLE_TIER2, RADIANT_MIDDLE_TIER1, RADIANT_TOP_TIER3, RADIANT_TOP_TIER2, RADIANT_TOP_TIER1};
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -66,11 +69,8 @@ public class GameViewFragment extends Fragment {
         final ListView team2Team = (ListView) rootView.findViewById(R.id.team2team);
         Switch itemSwitch =  (Switch) rootView.findViewById(R.id.switch3);
 
-        ImageView towerImage = (ImageView) rootView.findViewById(R.id.towerimage);
-        int towerID = rootView.getResources().getIdentifier("drawable/tower", "drawable", getActivity().getPackageName());
-        towerImage.setImageResource(towerID);
 
-        itemSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+        itemSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -80,8 +80,7 @@ public class GameViewFragment extends Fragment {
                         adapter2.setShowItems(false);
                         adapter1.notifyDataSetChanged();
                         adapter2.notifyDataSetChanged();
-                    }
-                    else {
+                    } else {
                         adapter1.setShowItems(true);
                         adapter2.setShowItems(true);
                         adapter1.notifyDataSetChanged();
@@ -115,24 +114,25 @@ public class GameViewFragment extends Fragment {
 
 
 
-        int team1stdID = rootView.getResources().getIdentifier("drawable/" + fixString(game.getRadiant_team().getTeam_name()) + "_std", "drawable", getActivity().getPackageName());
-        int team1bigID = rootView.getResources().getIdentifier("drawable/" + fixString(game.getRadiant_team().getTeam_name()) + "_big", "drawable", getActivity().getPackageName());
-        int team2stdID = rootView.getResources().getIdentifier("drawable/" + fixString(game.getDire_team().getTeam_name()) + "_std", "drawable", getActivity().getPackageName());
-        int team2bigID = rootView.getResources().getIdentifier("drawable/" + fixString(game.getDire_team().getTeam_name()) + "_big", "drawable", getActivity().getPackageName());
+        int team1stdID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getRadiant_team().getTeam_name()) + "_std", "drawable", getActivity().getPackageName());
+        int team1bigID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getRadiant_team().getTeam_name()) + "_big", "drawable", getActivity().getPackageName());
+        int team2stdID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getDire_team().getTeam_name()) + "_std", "drawable", getActivity().getPackageName());
+        int team2bigID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getDire_team().getTeam_name()) + "_big", "drawable", getActivity().getPackageName());
 
         if(team1stdID == 0)
-            team1Logo.setImageResource(R.drawable.default_std);
+            team1Logo.setImageResource(R.drawable.team_default_std);
         else
             team1Logo.setImageResource(team1stdID);
 
         if(team2stdID == 0)
-            team2Logo.setImageResource(R.drawable.default_std);
+            team2Logo.setImageResource(R.drawable.team_default_std);
         else
             team2Logo.setImageResource(team2stdID);
 
         team1Image.setImageResource(team1bigID);
         team2Image.setImageResource(team2bigID);
 
+        setupTowers(rootView);
 
         return rootView;
     }
@@ -142,6 +142,152 @@ public class GameViewFragment extends Fragment {
         super.onAttach(activity);
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(ARG_SECTION_NUMBER));
+    }
+
+    public void setupTowers(View v) {
+
+        ImageView radiantTopT1 = (ImageView) v.findViewById(R.id.rTopT1);
+        ImageView radiantTopT2 = (ImageView) v.findViewById(R.id.rTopT2);
+        ImageView radiantTopT3 = (ImageView) v.findViewById(R.id.rTopT3);
+        ImageView radiantMidT1 = (ImageView) v.findViewById(R.id.rMidT1);
+        ImageView radiantMidT2 = (ImageView) v.findViewById(R.id.rMidT2);
+        ImageView radiantMidT3 = (ImageView) v.findViewById(R.id.rMidT3);
+        ImageView radiantBotT1 = (ImageView) v.findViewById(R.id.rBotT1);
+        ImageView radiantBotT2 = (ImageView) v.findViewById(R.id.rBotT2);
+        ImageView radiantBotT3 = (ImageView) v.findViewById(R.id.rBotT3);
+        ImageView radiantAncTop = (ImageView) v.findViewById(R.id.rAncTop);
+        ImageView radiantAncBot = (ImageView) v.findViewById(R.id.rAncBot);
+
+        ImageView direTopT1 = (ImageView) v.findViewById(R.id.dTopT1);
+        ImageView direTopT2 = (ImageView) v.findViewById(R.id.dTopT2);
+        ImageView direTopT3 = (ImageView) v.findViewById(R.id.dTopT3);
+        ImageView direMidT1 = (ImageView) v.findViewById(R.id.dMidT1);
+        ImageView direMidT2 = (ImageView) v.findViewById(R.id.dMidT2);
+        ImageView direMidT3 = (ImageView) v.findViewById(R.id.dMidT3);
+        ImageView direBotT1 = (ImageView) v.findViewById(R.id.dBotT1);
+        ImageView direBotT2 = (ImageView) v.findViewById(R.id.dBotT2);
+        ImageView direBotT3 = (ImageView) v.findViewById(R.id.dBotT3);
+        ImageView direAncTop = (ImageView) v.findViewById(R.id.dAncTop);
+        ImageView direAncBot = (ImageView) v.findViewById(R.id.dAncBot);
+
+        String towersAsBinary = Integer.toBinaryString(game.getTower_state());
+        char[] tower_status = towersAsBinary.toCharArray();
+
+        //--------------------------------------------
+        // Set up Visibility for Radiant Team's Towers
+
+        if(tower_status[Building.RADIANT_TOP_TIER1.ordinal()] == 0)
+            radiantTopT1.setVisibility(View.VISIBLE);
+        else
+            radiantTopT1.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_TOP_TIER2.ordinal()] == 0)
+            radiantTopT2.setVisibility(View.VISIBLE);
+        else
+            radiantTopT2.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_TOP_TIER3.ordinal()] == 0)
+            radiantTopT3.setVisibility(View.VISIBLE);
+        else
+            radiantTopT3.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_MIDDLE_TIER1.ordinal()] == 0)
+            radiantMidT1.setVisibility(View.VISIBLE);
+        else
+            radiantMidT1.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_MIDDLE_TIER2.ordinal()] == 0)
+            radiantMidT2.setVisibility(View.VISIBLE);
+        else
+            radiantMidT2.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_MIDDLE_TIER3.ordinal()] == 0)
+            radiantMidT3.setVisibility(View.VISIBLE);
+        else
+            radiantMidT3.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_BOTTOM_TIER1.ordinal()] == 0)
+            radiantBotT1.setVisibility(View.VISIBLE);
+        else
+            radiantBotT1.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_BOTTOM_TIER2.ordinal()] == 0)
+            radiantBotT2.setVisibility(View.VISIBLE);
+        else
+            radiantBotT2.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_BOTTOM_TIER3.ordinal()] == 0)
+            radiantBotT3.setVisibility(View.VISIBLE);
+        else
+            radiantBotT3.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_ANCIENT_TOP.ordinal()] == 0)
+            radiantAncTop.setVisibility(View.VISIBLE);
+        else
+            radiantAncTop.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.RADIANT_ANCIENT_BOTTOM.ordinal()] == 0)
+            radiantAncBot.setVisibility(View.VISIBLE);
+        else
+            radiantAncBot.setVisibility(View.INVISIBLE);
+
+        //-----------------------------------------
+        // Set up Visibility for Dire Team's Towers
+
+        if(tower_status[Building.DIRE_TOP_TIER1.ordinal()] == 0)
+            direTopT1.setVisibility(View.VISIBLE);
+        else
+            direTopT1.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_TOP_TIER2.ordinal()] == 0)
+            direTopT2.setVisibility(View.VISIBLE);
+        else
+            direTopT2.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_TOP_TIER3.ordinal()] == 0)
+            direTopT3.setVisibility(View.VISIBLE);
+        else
+            direTopT3.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_MIDDLE_TIER1.ordinal()] == 0)
+            direMidT1.setVisibility(View.VISIBLE);
+        else
+            direMidT1.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_MIDDLE_TIER2.ordinal()] == 0)
+            direMidT2.setVisibility(View.VISIBLE);
+        else
+            direMidT2.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_MIDDLE_TIER3.ordinal()] == 0)
+            direMidT3.setVisibility(View.VISIBLE);
+        else
+            direMidT3.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_BOTTOM_TIER1.ordinal()] == 0)
+            direBotT1.setVisibility(View.VISIBLE);
+        else
+            direBotT1.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_BOTTOM_TIER2.ordinal()] == 0)
+            direBotT2.setVisibility(View.VISIBLE);
+        else
+            direBotT2.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_BOTTOM_TIER3.ordinal()] == 0)
+            direBotT3.setVisibility(View.VISIBLE);
+        else
+            direBotT3.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_ANCIENT_TOP.ordinal()] == 0)
+            direAncTop.setVisibility(View.VISIBLE);
+        else
+            direAncTop.setVisibility(View.INVISIBLE);
+
+        if(tower_status[Building.DIRE_ANCIENT_BOTTOM.ordinal()] == 0)
+            direAncBot.setVisibility(View.VISIBLE);
+        else
+            direAncBot.setVisibility(View.INVISIBLE);
     }
 
     public String fixString(String s){

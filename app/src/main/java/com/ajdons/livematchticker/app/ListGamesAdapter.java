@@ -80,18 +80,18 @@ public class ListGamesAdapter extends ArrayAdapter<Game> {
 
 
 
-        int team1ID = context.getResources().getIdentifier("drawable/" + fixString(team1Name.getText().toString()) + "_std", "drawable", context.getPackageName());
-        int team2ID = context.getResources().getIdentifier("drawable/" + fixString(team2Name.getText().toString()) + "_std", "drawable", context.getPackageName());
+        int team1ID = context.getResources().getIdentifier("drawable/team_" + fixString(team1Name.getText().toString()) + "_std", "drawable", context.getPackageName());
+        int team2ID = context.getResources().getIdentifier("drawable/team_" + fixString(team2Name.getText().toString()) + "_std", "drawable", context.getPackageName());
 
         if(team1ID != 0)
             team1Logo.setImageResource(team1ID);
         else
-            team1Logo.setImageResource(R.drawable.default_std);
+            team1Logo.setImageResource(R.drawable.team_default_std);
 
         if(team2ID != 0)
             team2Logo.setImageResource(team2ID);
         else
-            team2Logo.setImageResource(R.drawable.default_std);
+            team2Logo.setImageResource(R.drawable.team_default_std);
 
         // 5. return the rowView
         return rowView;

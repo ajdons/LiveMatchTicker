@@ -119,7 +119,7 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
 
         int heroID;
         try {
-            heroID = context.getResources().getIdentifier("drawable/" + DOTA_HEROES[Integer.parseInt(playersArrayList.get(position).getHero_id())] + "_mini", "drawable", context.getPackageName());
+            heroID = context.getResources().getIdentifier("drawable/hero_" + DOTA_HEROES[Integer.parseInt(playersArrayList.get(position).getHero_id())] + "_mini", "drawable", context.getPackageName());
         } catch (ArrayIndexOutOfBoundsException e) {
             heroID = 0;
         }
@@ -132,12 +132,12 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
         int item5ID = 0;
         int item6ID = 0;
         try {
-            item1ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem0()] + "_lg", "drawable", context.getPackageName());
-            item2ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem1()] + "_lg", "drawable", context.getPackageName());
-            item3ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem2()] + "_lg", "drawable", context.getPackageName());
-            item4ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem3()] + "_lg", "drawable", context.getPackageName());
-            item5ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem4()] + "_lg", "drawable", context.getPackageName());
-            item6ID = context.getResources().getIdentifier("drawable/" + DOTA_ITEMS[playersArrayList.get(position).getItem5()] + "_lg", "drawable", context.getPackageName());
+            item1ID = context.getResources().getIdentifier("drawable/item_" + DOTA_ITEMS[playersArrayList.get(position).getItem0()] + "_lg", "drawable", context.getPackageName());
+            item2ID = context.getResources().getIdentifier("drawable/item_" + DOTA_ITEMS[playersArrayList.get(position).getItem1()] + "_lg", "drawable", context.getPackageName());
+            item3ID = context.getResources().getIdentifier("drawable/item_" + DOTA_ITEMS[playersArrayList.get(position).getItem2()] + "_lg", "drawable", context.getPackageName());
+            item4ID = context.getResources().getIdentifier("drawable/item_" + DOTA_ITEMS[playersArrayList.get(position).getItem3()] + "_lg", "drawable", context.getPackageName());
+            item5ID = context.getResources().getIdentifier("drawable/item_" + DOTA_ITEMS[playersArrayList.get(position).getItem4()] + "_lg", "drawable", context.getPackageName());
+            item6ID = context.getResources().getIdentifier("drawable/item_" + DOTA_ITEMS[playersArrayList.get(position).getItem5()] + "_lg", "drawable", context.getPackageName());
         } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
         }
@@ -152,34 +152,35 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
         //Ignore, StringIndexOutOfBounds, it just means the item name is shorter than "recipe"
         try {
             if (DOTA_ITEMS[playersArrayList.get(position).getItem0()].substring(0, 7).equals("recipe"))
-                item1Image.setImageResource(R.drawable.recipe_lg);
+                item1Image.setImageResource(R.drawable.item_recipe_lg);
             if (DOTA_ITEMS[playersArrayList.get(position).getItem1()].substring(0, 7).equals("recipe"))
-                item2Image.setImageResource(R.drawable.recipe_lg);
+                item2Image.setImageResource(R.drawable.item_recipe_lg);
             if (DOTA_ITEMS[playersArrayList.get(position).getItem2()].substring(0, 7).equals("recipe"))
-                item3Image.setImageResource(R.drawable.recipe_lg);
+                item3Image.setImageResource(R.drawable.item_recipe_lg);
             if (DOTA_ITEMS[playersArrayList.get(position).getItem3()].substring(0, 7).equals("recipe"))
-                item4Image.setImageResource(R.drawable.recipe_lg);
+                item4Image.setImageResource(R.drawable.item_recipe_lg);
             if (DOTA_ITEMS[playersArrayList.get(position).getItem4()].substring(0, 7).equals("recipe"))
-                item5Image.setImageResource(R.drawable.recipe_lg);
+                item5Image.setImageResource(R.drawable.item_recipe_lg);
             if (DOTA_ITEMS[playersArrayList.get(position).getItem5()].substring(0, 7).equals("recipe"))
-                item6Image.setImageResource(R.drawable.recipe_lg);
+                item6Image.setImageResource(R.drawable.item_recipe_lg);
         }
         catch(StringIndexOutOfBoundsException e){
-            e.printStackTrace();
+            //e.printStackTrace();
         }
+        //For some stupid reason, item 241 is a shared tango, way out of the bounds of the item array
         catch(ArrayIndexOutOfBoundsException e){
             if(playersArrayList.get(position).getItem0() == 241)
-                item1Image.setImageResource(R.drawable.tango_shared_lg);
+                item1Image.setImageResource(R.drawable.item_tango_shared_lg);
             if(playersArrayList.get(position).getItem1() == 241)
-                item2Image.setImageResource(R.drawable.tango_shared_lg);
+                item2Image.setImageResource(R.drawable.item_tango_shared_lg);
             if(playersArrayList.get(position).getItem2() == 241)
-                item3Image.setImageResource(R.drawable.tango_shared_lg);
+                item3Image.setImageResource(R.drawable.item_tango_shared_lg);
             if(playersArrayList.get(position).getItem3() == 241)
-                item4Image.setImageResource(R.drawable.tango_shared_lg);
+                item4Image.setImageResource(R.drawable.item_tango_shared_lg);
             if(playersArrayList.get(position).getItem4() == 241)
-                item5Image.setImageResource(R.drawable.tango_shared_lg);
+                item5Image.setImageResource(R.drawable.item_tango_shared_lg);
             if(playersArrayList.get(position).getItem5() == 241)
-                item6Image.setImageResource(R.drawable.tango_shared_lg);
+                item6Image.setImageResource(R.drawable.item_tango_shared_lg);
         }
         //Visibility Rules for toggle switch
 

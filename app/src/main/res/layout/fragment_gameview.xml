@@ -153,17 +153,179 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Tower Status"
+        android:textColor="#ffcdcdcd"
         android:id="@+id/towertitle"
         android:layout_marginTop="10dp"
         android:layout_below="@id/team2team"
         android:layout_centerHorizontal="true" />
 
+<!-- =============================================================== -->
+<!--                   All Radiant Towers                            -->
+<!-- =============================================================== -->
 
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="5dp"
-        android:id="@+id/towerimage"
+        android:id="@+id/rTopT1"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rTopT2"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rTopT3"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rMidT1"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rMidT2"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rMidT3"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rBotT1"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rBotT2"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rBotT3"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rAncTop"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/rAncBot"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+
+    <!-- =============================================================== -->
+    <!--                      All Dire Towers                            -->
+    <!-- =============================================================== -->
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dTopT1"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dTopT2"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dTopT3"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dMidT1"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dMidT2"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dMidT3"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dBotT1"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dBotT2"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dBotT3"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dAncTop"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/dAncBot"
         android:layout_below="@+id/towertitle"
         android:layout_centerHorizontal="true" />
 
