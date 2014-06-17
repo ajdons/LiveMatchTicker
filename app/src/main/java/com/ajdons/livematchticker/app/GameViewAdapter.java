@@ -1,15 +1,9 @@
 package com.ajdons.livematchticker.app;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,10 +11,6 @@ import android.widget.TextView;
 import com.ajdons.livematchticker.models.Game;
 import com.ajdons.livematchticker.models.Player;
 
-import org.w3c.dom.Text;
-
-import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -111,6 +101,8 @@ public class GameViewAdapter extends ArrayAdapter<Player> {
         ImageView item4Image = (ImageView) rowView.findViewById(R.id.item4);
         ImageView item5Image = (ImageView) rowView.findViewById(R.id.item5);
         ImageView item6Image = (ImageView) rowView.findViewById(R.id.item6);
+
+
 
         //Find player's screen name based on their Account ID
         for (Player p : theGame.getPlayers()) {

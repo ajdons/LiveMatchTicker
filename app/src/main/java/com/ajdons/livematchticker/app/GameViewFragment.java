@@ -66,6 +66,10 @@ public class GameViewFragment extends Fragment {
         final ListView team2Team = (ListView) rootView.findViewById(R.id.team2team);
         Switch itemSwitch =  (Switch) rootView.findViewById(R.id.switch3);
 
+        ImageView towerImage = (ImageView) rootView.findViewById(R.id.towerimage);
+        int towerID = rootView.getResources().getIdentifier("drawable/tower", "drawable", getActivity().getPackageName());
+        towerImage.setImageResource(towerID);
+
         itemSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
             @Override

@@ -148,6 +148,24 @@
         android:thumb="@drawable/my_btn_toggle"
         android:track="@drawable/my_btn_toggle_bg"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Tower Status"
+        android:id="@+id/towertitle"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/team2team"
+        android:layout_centerHorizontal="true" />
+
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="5dp"
+        android:id="@+id/towerimage"
+        android:layout_below="@+id/towertitle"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
 
