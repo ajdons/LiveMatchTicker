@@ -5,15 +5,12 @@ package com.ajdons.livematchticker.app;
         import android.os.Handler;
         import android.os.Message;
         import android.support.v4.app.FragmentManager;
-        import android.support.v7.app.ActionBarActivity;
         import android.support.v7.app.ActionBar;
         import android.os.Bundle;
+        import android.support.v7.app.ActionBarActivity;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.support.v4.widget.DrawerLayout;
-        import android.widget.Button;
-        import android.widget.ListView;
-        import android.widget.Toast;
 
         import com.ajdons.livematchticker.models.*;
         import com.thoughtworks.xstream.XStream;
@@ -126,6 +123,7 @@ public class MainActivity extends ActionBarActivity
             System.out.println("There are currently "  + test.getGames().size() + " live games being played.");
             importantGames = new ArrayList<Game>();
             for(Game g : test.getGames()){
+                importantGames.add(g);
                 for(int i=0; i<PREMIERE_LEAGUES.length; i++) {
                     if (PREMIERE_LEAGUES[i].equals(g.getLeague_id())) {
                         importantGames.add(g);

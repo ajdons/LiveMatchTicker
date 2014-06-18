@@ -132,6 +132,7 @@ public class GameViewFragment extends Fragment {
         team1Image.setImageResource(team1bigID);
         team2Image.setImageResource(team2bigID);
 
+
         setupTowers(rootView);
 
         return rootView;
@@ -170,8 +171,34 @@ public class GameViewFragment extends Fragment {
         ImageView direAncTop = (ImageView) v.findViewById(R.id.dAncTop);
         ImageView direAncBot = (ImageView) v.findViewById(R.id.dAncBot);
 
+        radiantTopT1.setImageResource(R.drawable.tower_rtop_t1);
+        radiantTopT2.setImageResource(R.drawable.tower_rtop_t2);
+        radiantTopT3.setImageResource(R.drawable.tower_rtop_t3);
+        radiantMidT1.setImageResource(R.drawable.tower_rmid_t1);
+        radiantMidT2.setImageResource(R.drawable.tower_rmid_t2);
+        radiantMidT3.setImageResource(R.drawable.tower_rmid_t3);
+        radiantBotT1.setImageResource(R.drawable.tower_rbot_t1);
+        radiantBotT2.setImageResource(R.drawable.tower_rbot_t2);
+        radiantBotT3.setImageResource(R.drawable.tower_rbot_t3);
+        radiantAncTop.setImageResource(R.drawable.tower_ranc_top);
+        radiantAncBot.setImageResource(R.drawable.tower_ranc_bot);
+
+        direTopT1.setImageResource(R.drawable.tower_dtop_t1);
+        direTopT2.setImageResource(R.drawable.tower_dtop_t2);
+        direTopT3.setImageResource(R.drawable.tower_dtop_t3);
+        direMidT1.setImageResource(R.drawable.tower_dmid_t1);
+        direMidT2.setImageResource(R.drawable.tower_dmid_t2);
+        direMidT3.setImageResource(R.drawable.tower_dmid_t3);
+        direBotT1.setImageResource(R.drawable.tower_dbot_t1);
+        direBotT2.setImageResource(R.drawable.tower_dbot_t2);
+        direBotT3.setImageResource(R.drawable.tower_dbot_t3);
+        direAncTop.setImageResource(R.drawable.tower_danc_top);
+        direAncBot.setImageResource(R.drawable.tower_danc_bot);
+
         String towersAsBinary = Integer.toBinaryString(game.getTower_state());
         char[] tower_status = towersAsBinary.toCharArray();
+        for(int i=0; i<tower_status.length; i++)
+            System.out.println(tower_status[i]);
 
         //--------------------------------------------
         // Set up Visibility for Radiant Team's Towers
