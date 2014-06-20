@@ -329,6 +329,20 @@
         android:layout_below="@+id/towertitle"
         android:layout_centerHorizontal="true" />
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/team2towerlogo"
+        android:layout_alignTop="@+id/rTopT1"
+        android:layout_toRightOf="@+id/rTopT1" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/team1towerlogo"
+        android:layout_alignBottom="@+id/rTopT1"
+        android:layout_toLeftOf="@+id/rTopT1" />
+
 </RelativeLayout>
 
     </ScrollView>

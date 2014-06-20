@@ -65,9 +65,17 @@ public class ListGamesAdapter extends ArrayAdapter<Game> {
         ImageView team1Logo = (ImageView) rowView.findViewById(R.id.imageView1);
         ImageView team2Logo = (ImageView) rowView.findViewById(R.id.imageView2);
 
+
         // 4. Set the text and images for elements
-        team1Name.setText(gamesArrayList.get(position).getRadiant_team().getTeam_name());
-        team2Name.setText(gamesArrayList.get(position).getDire_team().getTeam_name());
+        if(gamesArrayList.get(position).getRadiant_team() != null)
+            team1Name.setText(gamesArrayList.get(position).getRadiant_team().getTeam_name());
+        else
+            team1Name.setText("");
+
+        if(gamesArrayList.get(position).getDire_team() != null)
+            team2Name.setText(gamesArrayList.get(position).getDire_team().getTeam_name());
+        else
+            team2Name.setText("");
 
         if(gamesArrayList.get(position).getScoreboard() == null) {
             team1Score.setText(String.valueOf(0));
