@@ -106,20 +106,25 @@ public class GameViewFragment extends Fragment {
             adapter2 = new GameViewAdapter(getActivity(), game.getScoreboard().getDire().getPlayers(), game, false);
         }
 
-        team1Name.setText(game.getRadiant_team().getTeam_name());
-        team2Name.setText(game.getDire_team().getTeam_name());
+        int team1stdID =0;
+        int team1bigID =0;
+        int team2stdID =0;
+        int team2bigID =0;
+        if(game.getRadiant_team() != null) {
+            team1Name.setText(game.getRadiant_team().getTeam_name());
+            team1stdID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getRadiant_team().getTeam_name()) + "_std", "drawable", getActivity().getPackageName());
+            team1bigID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getRadiant_team().getTeam_name()) + "_big", "drawable", getActivity().getPackageName());
+        }
 
+        if(game.getDire_team() != null) {
+            team2Name.setText(game.getDire_team().getTeam_name());
+            team2stdID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getDire_team().getTeam_name()) + "_std", "drawable", getActivity().getPackageName());
+            team2bigID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getDire_team().getTeam_name()) + "_big", "drawable", getActivity().getPackageName());
+        }
 
         team1Team.setAdapter(adapter1);
         team2Team.setAdapter(adapter2);
 
-
-
-
-        int team1stdID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getRadiant_team().getTeam_name()) + "_std", "drawable", getActivity().getPackageName());
-        int team1bigID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getRadiant_team().getTeam_name()) + "_big", "drawable", getActivity().getPackageName());
-        int team2stdID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getDire_team().getTeam_name()) + "_std", "drawable", getActivity().getPackageName());
-        int team2bigID = rootView.getResources().getIdentifier("drawable/team_" + fixString(game.getDire_team().getTeam_name()) + "_big", "drawable", getActivity().getPackageName());
 
         if(team1stdID == 0) {
             team1Logo.setImageResource(R.drawable.team_default_std);

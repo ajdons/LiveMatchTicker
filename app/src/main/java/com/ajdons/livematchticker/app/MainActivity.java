@@ -123,16 +123,15 @@ public class MainActivity extends ActionBarActivity
             System.out.println("There are currently "  + test.getGames().size() + " live games being played.");
             importantGames = new ArrayList<Game>();
             for(Game g : test.getGames()){
-                importantGames.add(g);
-                for(int i=0; i<PREMIERE_LEAGUES.length; i++) {
-                    if (PREMIERE_LEAGUES[i].equals(g.getLeague_id())) {
+//                for(int i=0; i<PREMIERE_LEAGUES.length; i++) {
+//                    if (PREMIERE_LEAGUES[i].equals(g.getLeague_id())) {
+//                        importantGames.add(g);
+//                        break;
+//                    }
+//                    else
+                    if(g.getLeague_tier() == 3 || g.getLeague_tier() == 2)
                         importantGames.add(g);
-                        break;
-                    }
-                    else
-                    if(g.getLeague_tier() == 3)
-                        importantGames.add(g);
-                }
+ //               }
             }
 
             adapter = new ListGamesAdapter(getApplicationContext(), importantGames);
