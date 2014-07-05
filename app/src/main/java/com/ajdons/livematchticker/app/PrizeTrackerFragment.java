@@ -105,6 +105,15 @@ public class PrizeTrackerFragment  extends Fragment {
             money = temp;
 
         }
+        if(money.length()>=8){
+            String temp = "$";
+            temp += money.substring(0, 2);
+            temp += ",";
+            temp += money.substring(2, 5);
+            temp += ",";
+            temp += money.substring(5, 8);
+            money = temp;
+        }
         else
         money = "$" + splittedStrings.get(1).substring(0, splittedStrings.get(1).length()-1);
     }

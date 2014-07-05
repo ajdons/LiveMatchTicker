@@ -36,6 +36,9 @@ public class Player {
     private float position_x;
     private float position_y;
 
+
+    private int net_worth;
+
     public Player(){
         this.account_id = "unknown";
         this.name = "unknown";
@@ -64,6 +67,17 @@ public class Player {
         this.respawn_timer = 0;
         this.position_x = 0;
         this.position_y = 0;
+        this.net_worth = 0;
+
+    }
+
+
+    public int getNet_worth() {
+        return net_worth;
+    }
+
+    public void setNet_worth(int net_worth) {
+        this.net_worth = net_worth;
     }
 
     public String getAccount_id() {
