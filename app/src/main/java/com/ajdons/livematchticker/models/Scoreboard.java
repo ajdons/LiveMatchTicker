@@ -9,6 +9,24 @@ public class Scoreboard {
     private float roshan_respawn_timer;
     private Team radiant;
     private Team dire;
+    private int tournament_id;
+    private int tournament_game_id;
+
+    public int getTournament_id() {
+        return tournament_id;
+    }
+
+    public void setTournament_id(int tournament_id) {
+        this.tournament_id = tournament_id;
+    }
+
+    public int getTournament_game_id() {
+        return tournament_game_id;
+    }
+
+    public void setTournament_game_id(int tournament_game_id) {
+        this.tournament_game_id = tournament_game_id;
+    }
 
     public float getDuration() {
         return duration;

@@ -13,9 +13,17 @@ package com.ajdons.livematchticker.app;
         import android.support.v4.widget.DrawerLayout;
 
         import com.ajdons.livematchticker.models.*;
+        import com.shephertz.app42.paas.sdk.android.App42API;
+        import com.shephertz.app42.paas.sdk.android.App42CallBack;
+        import com.shephertz.app42.paas.sdk.android.storage.Storage;
+        import com.shephertz.app42.paas.sdk.android.storage.StorageService;
         import com.thoughtworks.xstream.XStream;
+        import com.thoughtworks.xstream.io.json.JettisonMappedXmlDriver;
+
 
         import org.apache.commons.io.IOUtils;
+        import org.json.JSONException;
+        import org.json.JSONObject;
 
         import java.io.IOException;
         import java.io.InputStream;
@@ -42,6 +50,7 @@ public class MainActivity extends ActionBarActivity
     private String resultAsXML = "";
     private List<Game> importantGames;
     public static final String MY_KEY = "28594305340A0FD9BD498BF4663E69BC";
+    public static final String LIVE_GAMES_ID = "53bc9cd3e4b0c7a672183742";
 
     public static final String GET_HERO_IMAGE = "http://cdn.dota2.com/apps/dota2/images/heroes/";//add <hero_name>_sb.png to the end
     public static final String GET_ITEM_IMAGE = "http://cdn.dota2.com/apps/dota2/images/items/"; //add <item_name>_lg.png to the end
@@ -83,11 +92,15 @@ public class MainActivity extends ActionBarActivity
             "recipe_necronomicon_3", "necronomicon_2","necronomicon_3","recipe_diffusal_blade_2","diffusal_blade_2","recipe_dagon_2","recipe_dagon_3","recipe_dagon_4","recipe_dagon_5","dagon_2","dagon_3","dagon_4","dagon_5", "recipe_rod_of_atos",
             "rod_of_atos","recipe_abyssal_blade", "abyssal_blade", "recipe_heavens_halberd","heavens_halberd","recipe_ring_of_aquila","ring_of_aquila","recipe_tranquil_boots","tranquil_boots", "shadow_amulet"};
    private XStream xstream;
+    private StorageService storageService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        App42API.initialize(getApplicationContext(), "e5441c5b3fa4a68c5590d9b3c83f5194b1b830b79aa81e458545c32930cf4553", "1f6bdf89f9039f0150f95aff26beeb389d83d8515ee308bf3ddd5fa6c4d8ec54");
+        storageService = App42API.buildStorageService();
 
         xstream = new XStream();
         xstream.alias("game", Game.class);
@@ -112,34 +125,31 @@ public class MainActivity extends ActionBarActivity
 
     public void makeAPICall() {
         System.out.println("Trying to make api call.....");
-        try{
 
-            InputStream in = new URL(GET_LIVE_LEAGUE_GAMES).openStream();
-            resultAsXML = IOUtils.toString(in);
-            IOUtils.closeQuietly(in);
+        String dbName = "mainDB";
+        String collectionName = "mainCollection";
+        String objectId = LIVE_GAMES_ID;
 
-            Result test = new Result();
-            test = (Result)xstream.fromXML(resultAsXML);
+        Storage storage = (Storage) storageService.findDocumentById(dbName, collectionName, objectId);
+        ArrayList<Storage.JSONDocument> jsonDocList = storage.getJsonDocList();
+        try {
+            JSONObject jsonObject = new JSONObject(jsonDocList.get(0).getJsonDoc());
+            Result test = (Result)xstream.fromXML(jsonObject.get("xmlstring").toString());
             System.out.println("There are currently "  + test.getGames().size() + " live games being played.");
             importantGames = new ArrayList<Game>();
             for(Game g : test.getGames()){
-//                for(int i=0; i<PREMIERE_LEAGUES.length; i++) {
-//                    if (PREMIERE_LEAGUES[i].equals(g.getLeague_id())) {
-//                        importantGames.add(g);
-//                        break;
-//                    }
-//                    else
-                    if(g.getLeague_tier() == 3 || g.getLeague_tier() == 2)
-                        importantGames.add(g);
- //               }
+                if(g.getLeague_tier() == 3 || g.getLeague_tier() == 2 || g.getLeague_tier() == 1)
+                    importantGames.add(g);
             }
+
 
             adapter = new ListGamesAdapter(getApplicationContext(), importantGames);
         }
-        catch (IOException e){
-            System.out.println("Problem encountered: ");
-            System.out.println("There are currently no live games to display");
+        catch(Exception e){
+            e.printStackTrace();
         }
+
+
 
     }
 
